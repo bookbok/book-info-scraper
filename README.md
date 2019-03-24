@@ -1,4 +1,4 @@
-# kento-oka/book-info-scraper
+# kentoka/book-info-scraper
 
 ## Uses
 

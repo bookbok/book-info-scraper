@@ -1,5 +1,5 @@
 {
-    "name": "kento-oka/book-info-scraper",
+    "name": "kentoka/book-info-scraper",
     "description": "",
     "license": "MIT",
     "authors": [
@@ -10,5 +10,10 @@
     ],
     "require": {
         "php": "^7.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "Kentoka\\BookScraper\\": "src"
+        }
     }
 }
