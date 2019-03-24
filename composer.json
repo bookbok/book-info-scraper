@@ -1,0 +1,14 @@
+{
+    "name": "kento-oka/book-info-scraper",
+    "description": "",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "kento-oka",
+            "email": "kento-oka@kentoka.com"
+        }
+    ],
+    "require": {
+        "php": "^7.2"
+    }
+}
