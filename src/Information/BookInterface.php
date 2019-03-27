@@ -1,6 +1,6 @@
 <?php
 /**
- * kento-oka/book-scraper
+ * kentoka/book-info-scraper
  *
  * Licensed under The MIT License
  * For full copyright and license information, please see the LICENSE.
@@ -11,7 +11,7 @@
  * @license     MIT
  * @since       1.0.0
  */
-namespace Kentoka\BookScraper;
+namespace Kentoka\BookInfoScraper\Information;
 
 /**
  *

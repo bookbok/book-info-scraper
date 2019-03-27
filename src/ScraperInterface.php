@@ -1,6 +1,6 @@
 <?php
 /**
- * kento-oka/book-scraper
+ * kentoka/book-info-scraper
  *
  * Licensed under The MIT License
  * For full copyright and license information, please see the LICENSE.
@@ -11,14 +11,33 @@
  * @license     MIT
  * @since       1.0.0
  */
-namespace Kentoka\BookScraper;
+namespace Kentoka\BookInfoScraper;
+
+use Kentoka\BookInfoScraper\Exception\DataProviderException;
+use Kentoka\BookInfoScraper\Information\BookInterface;
 
 /**
  *
  */
 interface ScraperInterface{
 
+    /**
+     * Check id is supported.
+     *
+     * @param   string  $id
+     *
+     * @return  bool
+     */
     public function support(string $id): bool;
 
-    public function scrape(string $id): BookInterface;
+    /**
+     * Fetch book information.
+     *
+     * @param   string  $id
+     *
+     * @return  BookInterface|null
+     *
+     * @throws  DataProviderException
+     */
+    public function scrape(string $id): ?BookInterface;
 }

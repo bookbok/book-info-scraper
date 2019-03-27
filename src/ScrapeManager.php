@@ -1,6 +1,6 @@
 <?php
 /**
- * kento-oka/book-scraper
+ * kentoka/book-info-scraper
  *
  * Licensed under The MIT License
  * For full copyright and license information, please see the LICENSE.
@@ -11,7 +11,10 @@
  * @license     MIT
  * @since       1.0.0
  */
-namespace Kentoka\BookScraper;
+namespace Kentoka\BookInfoScraper;
+
+use Kentoka\BookInfoScraper\Exception\DataProviderException;
+use Kentoka\BookInfoScraper\Information\BookInterface;
 
 /**
  *
@@ -45,16 +48,31 @@ class ScrapeManager{
     }
 
     /**
-     * Fetch book info from scrapers.
+     * Fetch book information from registered scrapers.
      *
      * @param   string  $id
      * @param   callable    $filter
+     * @param   bool    $ignoreException
      *
      * @return  BookInterface|null
+     *
+     * @throws  DataProviderException
      */
-    public function scrape(string $id, callable $filter = null): ?BookInterface{
+    public function scrape(
+        string $id,
+        callable $filter = null,
+        bool $ignoreException = false
+    ): ?BookInterface{
         foreach($this->scrapers as $scraper){
-            $book   = $scraper->scrape($id);
+            $book   = null;
+
+            try{
+                $book   = $scraper->scrape($id);
+            }catch(DataProviderException $e){
+                if(!$ignoreException){
+                    throw $e;
+                }
+            }
 
             if(null === $book){
                 continue;

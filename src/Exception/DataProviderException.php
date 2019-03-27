@@ -11,17 +11,10 @@
  * @license     MIT
  * @since       1.0.0
  */
-namespace Kentoka\BookInfoScraper;
+namespace Kentoka\BookInfoScraper\Exception;
 
 /**
  *
  */
-abstract class AbstractIsbnScraper implements ScraperInterface{
-
-    /**
-     * {@inheritdoc}
-     */
-    public function support(string $id): bool{
-        return 1 === preg_match("/\A97[89][0-9]{10}\z/", $id);
-    }
+class DataProviderException extends \RuntimeException{
 }
