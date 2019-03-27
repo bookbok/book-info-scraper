@@ -204,6 +204,12 @@ class Book implements BookInterface{
      * @return  $this
      */
     public function setCoverUriList(?array $coverUriList): self{
+        foreach($coverUriList as $coverUri){
+            if(!is_string($coverUri)){
+                throw new \InvalidArgumentException();
+            }
+        }
+
         $this->coverUriList = $coverUriList;
 
         return $this;
@@ -244,6 +250,12 @@ class Book implements BookInterface{
      * @return  $this
      */
     public function setAuthors(?array $authors): self{
+        foreach($authors as $author){
+            if(!is_object($author) || !is_subclass_of($author, AuthorInterface::class)){
+                throw new \InvalidArgumentException();
+            }
+        }
+
         $this->authors  = $authors;
 
         return $this;
