@@ -13,8 +13,11 @@
  */
 namespace Kentoka\BookInfoScraper;
 
+use Kentoka\BookInfoScraper\Event\DataProviderExceptionEvent;
 use Kentoka\BookInfoScraper\Exception\DataProviderException;
 use Kentoka\BookInfoScraper\Information\BookInterface;
+use Psr\EventDispatcher\EventDispatcherInterface;
+use SplPriorityQueue;
 
 /**
  *
@@ -22,15 +25,23 @@ use Kentoka\BookInfoScraper\Information\BookInterface;
 class ScrapeManager{
 
     /**
-     * @var \SplPriorityQueue|ScraperInterface[]
+     * @var EventDispatcherInterface|null
+     */
+    private $dispatcher;
+
+    /**
+     * @var SplPriorityQueue|ScraperInterface[]
      */
     private $scrapers;
 
     /**
      * Constructor.
+     *
+     * @param EventDispatcherInterface $dispatcher
      */
-    public function __construct(){
-        $this->scrapers = new \SplPriorityQueue();
+    public function __construct(?EventDispatcherInterface $dispatcher){
+        $this->dispatcher   = $dispatcher;
+        $this->scrapers     = new SplPriorityQueue();
     }
 
     /**
@@ -63,28 +74,30 @@ class ScrapeManager{
         callable $filter = null,
         bool $ignoreException = false
     ): ?BookInterface{
-        foreach($this->scrapers as $scraper){
-            $book   = null;
+        $book   = null;
 
+        foreach($this->scrapers as $scraper){
             try{
                 $book   = $scraper->scrape($id);
             }catch(DataProviderException $e){
+                if(null !== $this->dispatcher){
+                    $this->dispatcher->dispatch(new DataProviderExceptionEvent($e));
+                }
+
                 if(!$ignoreException){
                     throw $e;
                 }
             }
 
-            if(null === $book){
-                continue;
+            if(null !== $book && null !== $filter && false === $filter($book)){
+                $book   = null;
             }
 
-            if(null !== $filter && false === $filter($book)){
-                continue;
+            if(null !== $book){
+                break;
             }
-
-            return $book;
         }
 
-        return null;
+        return $book;
     }
 }
