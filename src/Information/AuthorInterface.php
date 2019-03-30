@@ -21,14 +21,14 @@ interface AuthorInterface{
     /**
      * Get name.
      *
-     * @return  string
+     * @return string
      */
     public function getName(): string;
 
     /**
      * Get role in authors.
      *
-     * @return  string
+     * @return string[]
      */
-    public function getRole(): ?string;
+    public function getRoles(): ?array;
 }

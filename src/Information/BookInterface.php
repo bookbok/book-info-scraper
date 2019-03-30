@@ -56,13 +56,6 @@ interface BookInterface{
     public function getCoverUri(): ?string;
 
     /**
-     * Get cover image uri list.
-     *
-     * @return  string[]|null
-     */
-    public function getCoverUriList(): ?array;
-
-    /**
      * Get page count.
      *
      * @return  int|null

@@ -24,9 +24,9 @@ class Author implements AuthorInterface{
     private $name;
 
     /**
-     * @var string|null
+     * @var string[]|null
      */
-    private $role;
+    private $roles;
 
     /**
      * Constructor.
@@ -39,9 +39,7 @@ class Author implements AuthorInterface{
     }
 
     /**
-     * Get Name.
-     *
-     * @return  string
+     * {@inheritDoc}
      */
     public function getName(): string{
         return $this->name;
@@ -50,9 +48,9 @@ class Author implements AuthorInterface{
     /**
      * Set Name.
      *
-     * @param   string  $name
+     * @param string $name
      *
-     * @return  $this
+     * @return $this
      */
     public function setName(string $name): self{
         $this->name = $name;
@@ -61,23 +59,29 @@ class Author implements AuthorInterface{
     }
 
     /**
-     * Get Role.
-     *
-     * @return  string|null
+     * {@inheritDoc}
      */
-    public function getRole(): ?string{
-        return $this->role;
+    public function getRoles(): ?array{
+        return $this->roles;
     }
 
     /**
-     * Set Role.
+     * Set Roles.
      *
-     * @param   string|null $role
+     * @param string[]|null $roles
      *
-     * @return  $this
+     * @return $this
      */
-    public function setRole(?string $role): self{
-        $this->role = $role;
+    public function setRoles(?array $roles): self{
+        if(null !== $roles){
+            foreach($roles as $role){
+                if(!is_string($role)){
+                    throw new \InvalidArgumentException();
+                }
+            }
+        }
+
+        $this->roles    = $roles;
 
         return $this;
     }

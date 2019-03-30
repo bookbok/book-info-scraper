@@ -44,11 +44,6 @@ class Book implements BookInterface{
     private $coverUri;
 
     /**
-     * @var string[]|null
-     */
-    private $coverUriList;
-
-    /**
      * @var int|null
      */
     private $pageCount;
@@ -185,32 +180,6 @@ class Book implements BookInterface{
      */
     public function setCoverUri(?string $coverUri): self{
         $this->coverUri = $coverUri;
-
-        return $this;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getCoverUriList(): ?array{
-        return $this->coverUriList;
-    }
-
-    /**
-     * Set CoverUriList.
-     *
-     * @param   string[]|null   $coverUriList
-     *
-     * @return  $this
-     */
-    public function setCoverUriList(?array $coverUriList): self{
-        foreach($coverUriList as $coverUri){
-            if(!is_string($coverUri)){
-                throw new \InvalidArgumentException();
-            }
-        }
-
-        $this->coverUriList = $coverUriList;
 
         return $this;
     }
