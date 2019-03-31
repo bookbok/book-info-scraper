@@ -14,11 +14,17 @@
 namespace Kentoka\BookInfoScraper\Event;
 
 use Kentoka\BookInfoScraper\Exception\DataProviderException;
+use Kentoka\BookInfoScraper\ScraperInterface;
 
 /**
  *
  */
 class DataProviderExceptionEvent extends BookInfoScraperEvent{
+
+    /**
+     * @var ScraperInterface
+     */
+    private $scraper;
 
     /**
      * @var DataProviderException
@@ -28,10 +34,24 @@ class DataProviderExceptionEvent extends BookInfoScraperEvent{
     /**
      * Constructor.
      *
+     * @param ScraperInterface      $scraper
      * @param DataProviderException $e
      */
-    public function __construct(DataProviderException $e){
-        $this->e    = $e;
+    public function __construct(
+        ScraperInterface $scraper,
+        DataProviderException $e
+    ){
+        $this->scraper  = $scraper;
+        $this->e        = $e;
+    }
+
+    /**
+     * Get scraper.
+     *
+     * @return ScraperInterface
+     */
+    public function getScraper(): ScraperInterface{
+        return $this->scraper;
     }
 
     /**

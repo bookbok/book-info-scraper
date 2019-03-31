@@ -81,7 +81,7 @@ class ScrapeManager{
                 $book   = $scraper->scrape($id);
             }catch(DataProviderException $e){
                 if(null !== $this->dispatcher){
-                    $this->dispatcher->dispatch(new DataProviderExceptionEvent($e));
+                    $this->dispatcher->dispatch(new DataProviderExceptionEvent($scraper, $e));
                 }
 
                 if(!$ignoreException){
