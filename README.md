@@ -1,12 +1,12 @@
-# kentoka/book-info-scraper
+# bookbok/book-info-scraper
 
 ## Uses
 
 ```php
-use Kentoka\BookScraper\ScrapeManager;
-use Kentoka\BookScraper\ScraperInterface;
-use Kentoka\BookScraper\BookInterface;
-use Kentoka\BookScraper\Book;
+use BookBok\BookScraper\ScrapeManager;
+use BookBok\BookScraper\ScraperInterface;
+use BookBok\BookScraper\BookInterface;
+use BookBok\BookScraper\Book;
 
 class ISBNScraper implements ScraperInterface{
 

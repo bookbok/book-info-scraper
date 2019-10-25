@@ -1,6 +1,6 @@
 <?php
 /**
- * kentoka/book-info-scraper
+ * bookbok/book-info-scraper
  *
  * Licensed under The MIT License
  * For full copyright and license information, please see the LICENSE.
@@ -11,10 +11,10 @@
  * @license     MIT
  * @since       1.0.0
  */
-namespace Kentoka\BookInfoScraper\Event;
+namespace BookBok\BookInfoScraper\Event;
 
-use Kentoka\BookInfoScraper\Exception\DataProviderException;
-use Kentoka\BookInfoScraper\ScraperInterface;
+use BookBok\BookInfoScraper\Exception\DataProviderException;
+use BookBok\BookInfoScraper\ScraperInterface;
 
 /**
  *

@@ -1,6 +1,6 @@
 <?php
 /**
- * kentoka/book-info-scraper
+ * bookbok/book-info-scraper
  *
  * Licensed under The MIT License
  * For full copyright and license information, please see the LICENSE.
@@ -11,11 +11,11 @@
  * @license     MIT
  * @since       1.0.0
  */
-namespace Kentoka\BookInfoScraper;
+namespace BookBok\BookInfoScraper;
 
-use Kentoka\BookInfoScraper\Event\DataProviderExceptionEvent;
-use Kentoka\BookInfoScraper\Exception\DataProviderException;
-use Kentoka\BookInfoScraper\Information\BookInterface;
+use BookBok\BookInfoScraper\Event\DataProviderExceptionEvent;
+use BookBok\BookInfoScraper\Exception\DataProviderException;
+use BookBok\BookInfoScraper\Information\BookInterface;
 use Psr\EventDispatcher\EventDispatcherInterface;
 use SplPriorityQueue;
 

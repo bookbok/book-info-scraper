@@ -1,5 +1,5 @@
 {
-    "name": "kentoka/book-info-scraper",
+    "name": "bookbok/book-info-scraper",
     "description": "",
     "license": "MIT",
     "authors": [
@@ -14,7 +14,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Kentoka\\BookInfoScraper\\": "src"
+            "BookBok\\BookInfoScraper\\": "src"
         }
     }
 }
