@@ -1,4 +1,5 @@
 <?php
+
 /**
  * bookbok/book-info-scraper
  *
@@ -6,11 +7,11 @@
  * For full copyright and license information, please see the LICENSE.
  * Redistributions of files must retain the above copyright notice.
  *
- * @author      Kento Oka <kento-oka@kentoka.com>
- * @copyright   (c) Kento Oka
- * @license     MIT
- * @since       1.0.0
+ * @copyright (c) BookBok
+ * @license MIT
+ * @since 1.0.0
  */
+
 namespace BookBok\BookInfoScraper\Event;
 
 use BookBok\BookInfoScraper\Exception\DataProviderException;
@@ -19,8 +20,8 @@ use BookBok\BookInfoScraper\ScraperInterface;
 /**
  *
  */
-class DataProviderExceptionEvent extends BookInfoScraperEvent{
-
+class DataProviderExceptionEvent extends BookInfoScraperEvent
+{
     /**
      * @var ScraperInterface
      */
@@ -34,32 +35,32 @@ class DataProviderExceptionEvent extends BookInfoScraperEvent{
     /**
      * Constructor.
      *
-     * @param ScraperInterface      $scraper
-     * @param DataProviderException $e
+     * @param ScraperInterface      $scraper The scraper
+     * @param DataProviderException $e The caught exception
      */
-    public function __construct(
-        ScraperInterface $scraper,
-        DataProviderException $e
-    ){
-        $this->scraper  = $scraper;
-        $this->e        = $e;
+    public function __construct(ScraperInterface $scraper, DataProviderException $e)
+    {
+        $this->scraper = $scraper;
+        $this->e = $e;
     }
 
     /**
-     * Get scraper.
+     * Return the scraper.
      *
      * @return ScraperInterface
      */
-    public function getScraper(): ScraperInterface{
+    public function getScraper(): ScraperInterface
+    {
         return $this->scraper;
     }
 
     /**
-     * Get exception.
+     * Returns the caught exception.
      *
      * @return DataProviderException
      */
-    public function getException(): DataProviderException{
+    public function getException(): DataProviderException
+    {
         return $this->e;
     }
 }

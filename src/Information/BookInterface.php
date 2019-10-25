@@ -1,4 +1,5 @@
 <?php
+
 /**
  * bookbok/book-info-scraper
  *
@@ -6,96 +7,96 @@
  * For full copyright and license information, please see the LICENSE.
  * Redistributions of files must retain the above copyright notice.
  *
- * @author      Kento Oka <kento-oka@kentoka.com>
- * @copyright   (c) Kento Oka
- * @license     MIT
- * @since       1.0.0
+ * @copyright (c) BookBok
+ * @license MIT
+ * @since 1.0.0
  */
+
 namespace BookBok\BookInfoScraper\Information;
 
 /**
  *
  */
-interface BookInterface{
-
+interface BookInterface
+{
     /**
-     * Get ISBN.
+     * Return the book identifier.
      *
-     * If not managed by ISBN, return an arbitrary string identifying the book.
+     * An example is ISBN.
      *
-     * @return  string
+     * @return string
      */
     public function getId(): string;
 
     /**
-     * Get title.
+     * Returns the title.
      *
-     * @return  string
+     * @return string
      */
     public function getTitle(): string;
 
     /**
-     * Get sub title.
+     * Returns the sub title.
      *
-     * @return  string|null
+     * @return string|null
      */
     public function getSubTitle(): ?string;
 
     /**
-     * Get description.
+     * Returns the description.
      *
-     * @return  string|null
+     * @return string|null
      */
     public function getDescription(): ?string;
 
     /**
-     * Get cover image uri.
+     * Returns the cover image uri
      *
-     * @return  string|null
+     * @return string|null
      */
     public function getCoverUri(): ?string;
 
     /**
-     * Get page count.
+     * Return the page count.
      *
-     * @return  int|null
+     * @return int|null
      */
     public function getPageCount(): ?int;
 
     /**
-     * Get authors.
+     * Returns the authors.
      *
-     * @return  AuthorInterface[]
+     * @return AuthorInterface[]|null
      */
     public function getAuthors(): ?array;
 
     /**
-     * Get publisher name.
+     * Returns the publisher name.
      *
-     * @return  string|null
+     * @return string|null
      */
     public function getPublisher(): ?string;
 
     /**
-     * Get published date.
+     * Returns the published datetime.
      *
-     * @return  \DateTime|null
+     * @return \DateTime|null
      */
     public function getPublishedAt(): ?\DateTime;
 
     /**
-     * Get price.
+     * Returns the price.
      *
-     * @return  int|null
+     * @return int|null
      */
     public function getPrice(): ?int;
 
     /**
-     * Get price currency code.
-     *
-     * @return  string|null
+     * Returns the price currency code.
      *
      * @see https://www.iso.org/iso-4217-currency-codes.html
+     *
+     * @return string|null
      */
     public function getPriceCode(): ?string;
 }

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * bookbok/book-info-scraper
  *
@@ -6,18 +7,18 @@
  * For full copyright and license information, please see the LICENSE.
  * Redistributions of files must retain the above copyright notice.
  *
- * @author      Kento Oka <kento-oka@kentoka.com>
- * @copyright   (c) Kento Oka
- * @license     MIT
- * @since       1.0.0
+ * @copyright (c) BookBok
+ * @license MIT
+ * @since 1.0.0
  */
+
 namespace BookBok\BookInfoScraper\Information;
 
 /**
  *
  */
-class Book implements BookInterface{
-
+class Book implements BookInterface
+{
     /**
      * @var string
      */
@@ -79,7 +80,8 @@ class Book implements BookInterface{
      * @param   string  $id
      * @param   string  $title
      */
-    public function __construct(string $id, string $title){
+    public function __construct(string $id, string $title)
+    {
         $this->id       = $id;
         $this->title    = $title;
     }
@@ -87,19 +89,21 @@ class Book implements BookInterface{
     /**
      * {@inheritdoc}
      */
-    public function getId(): string{
+    public function getId(): string
+    {
         return $this->id;
     }
 
     /**
-     * Set Id.
+     * Set the book identifier.
      *
-     * @param   string  $id
+     * @param string $id The book identifier
      *
-     * @return  $this
+     * @return $this
      */
-    public function setId(string $id): self{
-        $this->id   = $id;
+    public function setId(string $id): Book
+    {
+        $this->id = $id;
 
         return $this;
     }
@@ -107,19 +111,21 @@ class Book implements BookInterface{
     /**
      * {@inheritdoc}
      */
-    public function getTitle(): string{
+    public function getTitle(): string
+    {
         return $this->title;
     }
 
     /**
-     * Set Title.
+     * Set the title.
      *
-     * @param   string  $title
+     * @param string $title The title.
      *
-     * @return  $this
+     * @return $this
      */
-    public function setTitle(string $title): self{
-        $this->title    = $title;
+    public function setTitle(string $title): Book
+    {
+        $this->title = $title;
 
         return $this;
     }
@@ -127,18 +133,20 @@ class Book implements BookInterface{
     /**
      * {@inheritdoc}
      */
-    public function getSubTitle(): ?string{
+    public function getSubTitle(): ?string
+    {
         return $this->subTitle;
     }
 
     /**
-     * Set SubTitle.
+     * Set the sub title.
      *
-     * @param   string|null $subTitle
+     * @param string|null $subTitle
      *
-     * @return  $this
+     * @return $this
      */
-    public function setSubTitle(?string $subTitle): self{
+    public function setSubTitle(?string $subTitle): Book
+    {
         $this->subTitle = $subTitle;
 
         return $this;
@@ -147,19 +155,21 @@ class Book implements BookInterface{
     /**
      * {@inheritdoc}
      */
-    public function getDescription(): ?string{
+    public function getDescription(): ?string
+    {
         return $this->description;
     }
 
     /**
-     * Set Description.
+     * Set the description.
      *
-     * @param   string|null $description
+     * @param string|null $description The description
      *
-     * @return  $this
+     * @return $this
      */
-    public function setDescription(?string $description): self{
-        $this->description  = $description;
+    public function setDescription(?string $description): Book
+    {
+        $this->description = $description;
 
         return $this;
     }
@@ -167,18 +177,20 @@ class Book implements BookInterface{
     /**
      * {@inheritdoc}
      */
-    public function getCoverUri(): ?string{
+    public function getCoverUri(): ?string
+    {
         return $this->coverUri;
     }
 
     /**
-     * Set CoverUri.
+     * Set the cover image uri.
      *
-     * @param   string|null $coverUri
+     * @param string|null $coverUri The cover image uri
      *
-     * @return  $this
+     * @return $this
      */
-    public function setCoverUri(?string $coverUri): self{
+    public function setCoverUri(?string $coverUri): Book
+    {
         $this->coverUri = $coverUri;
 
         return $this;
@@ -187,19 +199,21 @@ class Book implements BookInterface{
     /**
      * {@inheritdoc}
      */
-    public function getPageCount(): ?int{
+    public function getPageCount(): ?int
+    {
         return $this->pageCount;
     }
 
     /**
-     * Set PageCount.
+     * Set the page count.
      *
-     * @param   int|null    $pageCount
+     * @param int|null $pageCount The page count
      *
-     * @return  $this
+     * @return $this
      */
-    public function setPageCount(?int $pageCount): self{
-        $this->pageCount    = $pageCount;
+    public function setPageCount(?int $pageCount): Book
+    {
+        $this->pageCount = $pageCount;
 
         return $this;
     }
@@ -207,25 +221,27 @@ class Book implements BookInterface{
     /**
      * {@inheritdoc}
      */
-    public function getAuthors(): ?array{
+    public function getAuthors(): ?array
+    {
         return $this->authors;
     }
 
     /**
-     * Set Authors.
+     * Set the authors.
      *
-     * @param   AuthorInterface[]|null  $authors
+     * @param AuthorInterface[]|null $authors The authors
      *
-     * @return  $this
+     * @return $this
      */
-    public function setAuthors(?array $authors): self{
-        foreach($authors as $author){
-            if(!is_object($author) || !is_subclass_of($author, AuthorInterface::class)){
+    public function setAuthors(?array $authors): Book
+    {
+        foreach ($authors as $author) {
+            if (!is_object($author) || !is_subclass_of($author, AuthorInterface::class)) {
                 throw new \InvalidArgumentException();
             }
         }
 
-        $this->authors  = $authors;
+        $this->authors = $authors;
 
         return $this;
     }
@@ -233,19 +249,21 @@ class Book implements BookInterface{
     /**
      * {@inheritdoc}
      */
-    public function getPublisher(): ?string{
+    public function getPublisher(): ?string
+    {
         return $this->publisher;
     }
 
     /**
-     * Set Publisher.
+     * Set the publisher name.
      *
-     * @param   string|null $publisher
+     * @param string|null $publisher The publisher name
      *
-     * @return  $this
+     * @return $this
      */
-    public function setPublisher(?string $publisher): self{
-        $this->publisher    = $publisher;
+    public function setPublisher(?string $publisher): Book
+    {
+        $this->publisher = $publisher;
 
         return $this;
     }
@@ -253,19 +271,21 @@ class Book implements BookInterface{
     /**
      * {@inheritdoc}
      */
-    public function getPublishedAt(): ?\DateTime{
+    public function getPublishedAt(): ?\DateTime
+    {
         return $this->publishedAt;
     }
 
     /**
-     * Set PublishedAt.
+     * Set the published datetime.
      *
-     * @param   \DateTime|null  $publishedAt
+     * @param \DateTime|null $publishedAt The published datetime
      *
-     * @return  $this
+     * @return $this
      */
-    public function setPublishedAt(?\DateTime $publishedAt): self{
-        $this->publishedAt  = $publishedAt;
+    public function setPublishedAt(?\DateTime $publishedAt): Book
+    {
+        $this->publishedAt = $publishedAt;
 
         return $this;
     }
@@ -273,19 +293,21 @@ class Book implements BookInterface{
     /**
      * {@inheritdoc}
      */
-    public function getPrice(): ?int{
+    public function getPrice(): ?int
+    {
         return $this->price;
     }
 
     /**
-     * Set Price.
+     * Set the price.
      *
-     * @param   int|null    $price
+     * @param int|null $price The price
      *
-     * @return  $this
+     * @return $this
      */
-    public function setPrice(?int $price): self{
-        $this->price    = $price;
+    public function setPrice(?int $price): Book
+    {
+        $this->price = $price;
 
         return $this;
     }
@@ -293,19 +315,21 @@ class Book implements BookInterface{
     /**
      * {@inheritdoc}
      */
-    public function getPriceCode(): ?string{
+    public function getPriceCode(): ?string
+    {
         return $this->priceCode;
     }
 
     /**
-     * Set PriceCode.
+     * Set the price currency code.
      *
-     * @param   string|null $priceCode
+     * @param string|null $priceCode The price currency code
      *
-     * @return  $this
+     * @return $this
      */
-    public function setPriceCode(?string $priceCode): self{
-        $this->priceCode    = $priceCode;
+    public function setPriceCode(?string $priceCode): Book
+    {
+        $this->priceCode = $priceCode;
 
         return $this;
     }

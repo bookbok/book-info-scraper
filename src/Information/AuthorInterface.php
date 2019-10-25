@@ -1,4 +1,5 @@
 <?php
+
 /**
  * bookbok/book-info-scraper
  *
@@ -6,29 +7,29 @@
  * For full copyright and license information, please see the LICENSE.
  * Redistributions of files must retain the above copyright notice.
  *
- * @author      Kento Oka <kento-oka@kentoka.com>
- * @copyright   (c) Kento Oka
- * @license     MIT
- * @since       1.0.0
+ * @copyright (c) BookBok
+ * @license MIT
+ * @since 1.0.0
  */
+
 namespace BookBok\BookInfoScraper\Information;
 
 /**
  *
  */
-interface AuthorInterface{
-
+interface AuthorInterface
+{
     /**
-     * Get name.
+     * Returns the author name.
      *
      * @return string
      */
     public function getName(): string;
 
     /**
-     * Get role in authors.
+     * Returns the author roles.
      *
      * @return string[]
      */
-    public function getRoles(): ?array;
+    public function getRoles(): array;
 }

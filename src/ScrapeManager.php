@@ -1,4 +1,5 @@
 <?php
+
 /**
  * bookbok/book-info-scraper
  *
@@ -6,98 +7,101 @@
  * For full copyright and license information, please see the LICENSE.
  * Redistributions of files must retain the above copyright notice.
  *
- * @author      Kento Oka <kento-oka@kentoka.com>
- * @copyright   (c) Kento Oka
- * @license     MIT
- * @since       1.0.0
+ * @copyright (c) BookBok
+ * @license MIT
+ * @since 1.0.0
  */
+
 namespace BookBok\BookInfoScraper;
 
 use BookBok\BookInfoScraper\Event\DataProviderExceptionEvent;
 use BookBok\BookInfoScraper\Exception\DataProviderException;
 use BookBok\BookInfoScraper\Information\BookInterface;
 use Psr\EventDispatcher\EventDispatcherInterface;
-use SplPriorityQueue;
 
 /**
  *
  */
-class ScrapeManager{
-
+class ScrapeManager
+{
     /**
      * @var EventDispatcherInterface|null
      */
-    private $dispatcher;
+    private $eventDispatcher;
 
     /**
-     * @var SplPriorityQueue|ScraperInterface[]
+     * @var \SplPriorityQueue|ScraperInterface[]
      */
     private $scrapers;
 
     /**
      * Constructor.
      *
-     * @param EventDispatcherInterface $dispatcher
+     * @param EventDispatcherInterface $eventDispatcher The event dispatcher
      */
-    public function __construct(?EventDispatcherInterface $dispatcher){
-        $this->dispatcher   = $dispatcher;
-        $this->scrapers     = new SplPriorityQueue();
+    public function __construct(?EventDispatcherInterface $eventDispatcher)
+    {
+        $this->eventDispatcher = $eventDispatcher;
+        $this->scrapers = new \SplPriorityQueue();
     }
 
     /**
-     * Add scraper.
+     * Add the book information scraper.
      *
-     * @param   ScraperInterface    $scraper
-     * @param   int $priority
+     * @param ScraperInterface $scraper The book information scraper
+     * @param int              $priority The priority
      *
-     * @return  $this
+     * @return $this
      */
-    public function add(ScraperInterface $scraper, int $priority = 0): self{
+    public function add(ScraperInterface $scraper, int $priority = 0): ScrapeManager
+    {
         $this->scrapers->insert($scraper, $priority);
 
         return $this;
     }
 
     /**
-     * Fetch book information from registered scrapers.
+     * Returns the book.
      *
-     * @param   string  $id
-     * @param   callable    $filter
-     * @param   bool    $ignoreException
+     * @param string   $id The book identifier
+     * @param callable $filter The callback to determine books to ignore
+     * @param bool     $ignoreException If true ignore exceptions raised by the provider
      *
-     * @return  BookInterface|null
+     * @return BookInterface|null
      *
-     * @throws  DataProviderException
+     * @throws DataProviderException
      */
     public function scrape(
         string $id,
         callable $filter = null,
         bool $ignoreException = false
-    ): ?BookInterface{
-        $book   = null;
+    ): ?BookInterface {
+        foreach ($this->scrapers as $scraper) {
+            $book = null;
 
-        foreach($this->scrapers as $scraper){
-            try{
-                $book   = $scraper->scrape($id);
-            }catch(DataProviderException $e){
-                if(null !== $this->dispatcher){
-                    $this->dispatcher->dispatch(new DataProviderExceptionEvent($scraper, $e));
+            try {
+                $book = $scraper->scrape($id);
+            } catch (DataProviderException $e) {
+                if (null !== $this->eventDispatcher) {
+                    $this->eventDispatcher->dispatch(
+                        new DataProviderExceptionEvent($scraper, $e)
+                    );
                 }
 
-                if(!$ignoreException){
+                if (!$ignoreException) {
                     throw $e;
                 }
             }
 
-            if(null !== $book && null !== $filter && false === $filter($book)){
-                $book   = null;
+            if (null !== $book && null !== $filter && !($filter($book))) {
+                $book = null;
             }
 
-            if(null !== $book){
-                break;
+            if (null !== $book) {
+                return $book;
             }
         }
 
-        return $book;
+        return null;
     }
 }

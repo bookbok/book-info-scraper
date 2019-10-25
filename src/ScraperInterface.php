@@ -1,4 +1,5 @@
 <?php
+
 /**
  * bookbok/book-info-scraper
  *
@@ -6,11 +7,11 @@
  * For full copyright and license information, please see the LICENSE.
  * Redistributions of files must retain the above copyright notice.
  *
- * @author      Kento Oka <kento-oka@kentoka.com>
- * @copyright   (c) Kento Oka
- * @license     MIT
- * @since       1.0.0
+ * @copyright (c) BookBok
+ * @license MIT
+ * @since 1.0.0
  */
+
 namespace BookBok\BookInfoScraper;
 
 use BookBok\BookInfoScraper\Exception\DataProviderException;
@@ -19,25 +20,25 @@ use BookBok\BookInfoScraper\Information\BookInterface;
 /**
  *
  */
-interface ScraperInterface{
-
+interface ScraperInterface
+{
     /**
-     * Check id is supported.
+     * Returns whether the book identifier is supported.
      *
-     * @param   string  $id
+     * @param string $id The book identifier
      *
-     * @return  bool
+     * @return bool
      */
     public function support(string $id): bool;
 
     /**
-     * Fetch book information.
+     * Returns the book.
      *
-     * @param   string  $id
+     * @param string $id The book identifier
      *
-     * @return  BookInterface|null
+     * @return BookInterface|null
      *
-     * @throws  DataProviderException
+     * @throws DataProviderException Thrown when failed to receive data from the provider.
      */
     public function scrape(string $id): ?BookInterface;
 }
