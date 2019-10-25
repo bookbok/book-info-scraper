@@ -1,4 +1,10 @@
-# bookbok/book-info-scraper
+# Book Information scraper
+
+## Install
+
+```bash
+$ composer require bookbok/book-info-scraper
+```
 
 ## Uses
 
