@@ -1,24 +1,13 @@
 <?php
 
-/**
- * bookbok/book-info-scraper
- *
- * Licensed under The MIT License
- * For full copyright and license information, please see the LICENSE.
- * Redistributions of files must retain the above copyright notice.
- *
- * @copyright (c) BookBok
- * @license MIT
- * @since 1.0.0
- */
-
 namespace BookBok\BookInfoScraper;
 
 use BookBok\BookInfoScraper\Exception\DataProviderException;
 use BookBok\BookInfoScraper\Information\BookInterface;
 
 /**
- *
+ * @package BookBok\BookInfoScraper
+ * @license https://www.apache.org/licenses/LICENSE-2.0 Apache-2.0
  */
 interface ScraperInterface
 {

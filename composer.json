@@ -1,7 +1,7 @@
 {
     "name": "bookbok/book-info-scraper",
-    "description": "",
-    "license": "MIT",
+    "description": "Provides an interface to help fetch book information from the book API.",
+    "license": "Apache-2.0",
     "authors": [
         {
             "name": "kento-oka",
