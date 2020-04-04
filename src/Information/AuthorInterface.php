@@ -20,7 +20,7 @@ interface AuthorInterface
     /**
      * Returns the author roles.
      *
-     * @return string[]
+     * @return string[]|null
      */
-    public function getRoles(): array;
+    public function getRoles(): ?array;
 }

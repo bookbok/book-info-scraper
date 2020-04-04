@@ -26,11 +26,9 @@ class Author implements AuthorInterface
      * @param string   $name The author name
      * @param string[] $roles The author roles
      */
-    public function __construct(string $name, array $roles = [])
+    public function __construct(string $name, ?array $roles)
     {
-        $this
-            ->setName($name)
-            ->setRoles($roles);
+        $this->setName($name)->setRoles($roles);
     }
 
     /**
@@ -50,6 +48,10 @@ class Author implements AuthorInterface
      */
     public function setName(string $name): Author
     {
+        if ('' === $name) {
+            throw new \InvalidArgumentException();
+        }
+
         $this->name = $name;
 
         return $this;
@@ -58,7 +60,7 @@ class Author implements AuthorInterface
     /**
      * {@inheritDoc}
      */
-    public function getRoles(): array
+    public function getRoles(): ?array
     {
         return $this->roles;
     }
@@ -66,21 +68,27 @@ class Author implements AuthorInterface
     /**
      * Set the author roles.
      *
-     * @param string[] $roles The author roles
+     * @param string[]|null $roles The author roles
      *
      * @return $this
      */
-    public function setRoles(array $roles): Author
+    public function setRoles(?array $roles): Author
     {
-        $this->roles = [];
+        if (null === $roles) {
+            $this->roles = null;
+        }
+
+        if (0 === count($roles)) {
+            throw new \InvalidArgumentException();
+        }
 
         foreach ($roles as $role) {
             if (!is_string($role) || '' === $role) {
                 throw new \InvalidArgumentException();
             }
-
-            $this->roles[] = $role;
         }
+
+        $this->roles = $roles;
 
         return $this;
     }
