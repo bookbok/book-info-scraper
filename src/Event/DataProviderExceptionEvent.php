@@ -6,10 +6,12 @@ use BookBok\BookInfoScraper\Exception\DataProviderException;
 use BookBok\BookInfoScraper\ScraperInterface;
 
 /**
+ * Event fired when there is a problem when fetching book information.
+ *
  * @package BookBok\BookInfoScraper
  * @license https://www.apache.org/licenses/LICENSE-2.0 Apache-2.0
  */
-class DataProviderExceptionEvent extends BookInfoScraperEvent
+class DataProviderExceptionEvent implements BookInfoScraperEventInterface
 {
     /**
      * @var ScraperInterface

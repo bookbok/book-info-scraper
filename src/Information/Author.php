@@ -3,6 +3,8 @@
 namespace BookBok\BookInfoScraper\Information;
 
 /**
+ * Author information.
+ *
  * @package BookBok\BookInfoScraper
  * @license https://www.apache.org/licenses/LICENSE-2.0 Apache-2.0
  */
@@ -28,8 +30,7 @@ class Author implements AuthorInterface
     {
         $this
             ->setName($name)
-            ->setRoles($roles)
-        ;
+            ->setRoles($roles);
     }
 
     /**
@@ -71,13 +72,15 @@ class Author implements AuthorInterface
      */
     public function setRoles(array $roles): Author
     {
+        $this->roles = [];
+
         foreach ($roles as $role) {
-            if (!is_string($role)) {
+            if (!is_string($role) || '' === $role) {
                 throw new \InvalidArgumentException();
             }
-        }
 
-        $this->roles = $roles;
+            $this->roles[] = $role;
+        }
 
         return $this;
     }

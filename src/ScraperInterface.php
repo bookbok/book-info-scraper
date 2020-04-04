@@ -6,6 +6,8 @@ use BookBok\BookInfoScraper\Exception\DataProviderException;
 use BookBok\BookInfoScraper\Information\BookInterface;
 
 /**
+ * Interfaces that scraper must implement.
+ *
  * @package BookBok\BookInfoScraper
  * @license https://www.apache.org/licenses/LICENSE-2.0 Apache-2.0
  */
