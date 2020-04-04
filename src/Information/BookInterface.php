@@ -10,6 +10,22 @@ namespace BookBok\BookInfoScraper\Information;
  */
 interface BookInterface
 {
+    public const S_SUB_TITLE    = 0b00000001;
+    public const S_DESCRIPTION  = 0b00000010;
+    public const S_COVER_URI    = 0b00000100;
+    public const S_PAGE_COUNT   = 0b00001000;
+    public const S_AUTHORS      = 0b00010000;
+    public const S_PUBLISHER    = 0b00100000;
+    public const S_PUBLISHED_AT = 0b01000000;
+    public const S_PRICE        = 0b10000000;
+
+    /**
+     * Returns the supported optional data set.
+     *
+     * @return int
+     */
+    public function supported(): int;
+
     /**
      * Return the book identifier.
      *

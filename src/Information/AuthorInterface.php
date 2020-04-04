@@ -10,6 +10,15 @@ namespace BookBok\BookInfoScraper\Information;
  */
 interface AuthorInterface
 {
+    public const S_ROLES = 0b0001;
+
+    /**
+     * Returns the supported optional data set.
+     *
+     * @return int
+     */
+    public function supported(): int;
+
     /**
      * Returns the author name.
      *

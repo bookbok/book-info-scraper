@@ -10,6 +10,8 @@ namespace BookBok\BookInfoScraper\Information;
  */
 class Book implements BookInterface
 {
+    use SupportTrait;
+
     /**
      * @var string
      */
@@ -74,6 +76,14 @@ class Book implements BookInterface
     public function __construct(string $id, string $title)
     {
         $this->setId($id)->setTitle($title);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function supported(): int
+    {
+        return $this->supported;
     }
 
     /**
@@ -145,11 +155,18 @@ class Book implements BookInterface
      */
     public function setSubTitle(?string $subTitle): Book
     {
+        if (null === $subTitle) {
+            $this->removeSupport(static::S_SUB_TITLE);
+            return $this;
+        }
+
         if ('' === $subTitle) {
             throw new \InvalidArgumentException();
         }
 
         $this->subTitle = $subTitle;
+
+        $this->setSupport(static::S_SUB_TITLE);
 
         return $this;
     }
@@ -171,11 +188,18 @@ class Book implements BookInterface
      */
     public function setDescription(?string $description): Book
     {
+        if (null === $description) {
+            $this->removeSupport(static::S_DESCRIPTION);
+            return $this;
+        }
+
         if ('' === $description) {
             throw new \InvalidArgumentException();
         }
 
         $this->description = $description;
+
+        $this->setSupport(static::S_DESCRIPTION);
 
         return $this;
     }
@@ -197,11 +221,18 @@ class Book implements BookInterface
      */
     public function setCoverUri(?string $coverUri): Book
     {
+        if (null === $coverUri) {
+            $this->removeSupport(static::S_COVER_URI);
+            return $this;
+        }
+
         if ('' === $coverUri) {
             throw new \InvalidArgumentException();
         }
 
         $this->coverUri = $coverUri;
+
+        $this->setSupport(static::S_COVER_URI);
 
         return $this;
     }
@@ -223,7 +254,14 @@ class Book implements BookInterface
      */
     public function setPageCount(?int $pageCount): Book
     {
+        if (null === $pageCount) {
+            $this->removeSupport(static::S_PAGE_COUNT);
+            return $this;
+        }
+
         $this->pageCount = $pageCount;
+
+        $this->setSupport(static::S_PAGE_COUNT);
 
         return $this;
     }
@@ -248,6 +286,8 @@ class Book implements BookInterface
         if (null === $authors) {
             $this->authors = null;
 
+            $this->removeSupport(static::S_AUTHORS);
+
             return $this;
         }
 
@@ -262,6 +302,8 @@ class Book implements BookInterface
         }
 
         $this->authors = $authors;
+
+        $this->setSupport(static::S_AUTHORS);
 
         return $this;
     }
@@ -283,11 +325,18 @@ class Book implements BookInterface
      */
     public function setPublisher(?string $publisher): Book
     {
+        if (null === $publisher) {
+            $this->removeSupport(static::S_PUBLISHER);
+            return $this;
+        }
+
         if ('' === $publisher) {
             throw new \InvalidArgumentException();
         }
 
         $this->publisher = $publisher;
+
+        $this->setSupport(static::S_PUBLISHER);
 
         return $this;
     }
@@ -309,7 +358,14 @@ class Book implements BookInterface
      */
     public function setPublishedAt(?\DateTime $publishedAt): Book
     {
+        if (null === $publishedAt) {
+            $this->removeSupport(static::S_PUBLISHED_AT);
+            return $this;
+        }
+
         $this->publishedAt = $publishedAt;
+
+        $this->setSupport(static::S_PUBLISHED_AT);
 
         return $this;
     }
@@ -346,6 +402,8 @@ class Book implements BookInterface
             $this->price = null;
             $this->priceCode = null;
 
+            $this->removeSupport(static::S_PRICE);
+
             return $this;
         }
 
@@ -355,6 +413,8 @@ class Book implements BookInterface
 
         $this->price = $price;
         $this->priceCode = $code;
+
+        $this->setSupport(static::S_PRICE);
 
         return $this;
     }

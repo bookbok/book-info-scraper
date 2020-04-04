@@ -10,6 +10,8 @@ namespace BookBok\BookInfoScraper\Information;
  */
 class Author implements AuthorInterface
 {
+    use SupportTrait;
+
     /**
      * @var string
      */
@@ -29,6 +31,14 @@ class Author implements AuthorInterface
     public function __construct(string $name, ?array $roles)
     {
         $this->setName($name)->setRoles($roles);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function supported(): int
+    {
+        return $this->supported;
     }
 
     /**
@@ -77,6 +87,8 @@ class Author implements AuthorInterface
         if (null === $roles) {
             $this->roles = null;
 
+            $this->removeSupport(static::S_ROLES);
+
             return $this;
         }
 
@@ -90,6 +102,7 @@ class Author implements AuthorInterface
             }
         }
 
+        $this->setSupport(static::S_ROLES);
         $this->roles = $roles;
 
         return $this;
