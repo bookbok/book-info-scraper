@@ -73,8 +73,7 @@ class Book implements BookInterface
      */
     public function __construct(string $id, string $title)
     {
-        $this->id       = $id;
-        $this->title    = $title;
+        $this->setId($id)->setTitle($title);
     }
 
     /**
@@ -94,6 +93,10 @@ class Book implements BookInterface
      */
     public function setId(string $id): Book
     {
+        if ('' === $id) {
+            throw new \InvalidArgumentException();
+        }
+
         $this->id = $id;
 
         return $this;
@@ -116,6 +119,10 @@ class Book implements BookInterface
      */
     public function setTitle(string $title): Book
     {
+        if ('' === $title) {
+            throw new \InvalidArgumentException();
+        }
+
         $this->title = $title;
 
         return $this;
@@ -138,6 +145,10 @@ class Book implements BookInterface
      */
     public function setSubTitle(?string $subTitle): Book
     {
+        if ('' === $subTitle) {
+            throw new \InvalidArgumentException();
+        }
+
         $this->subTitle = $subTitle;
 
         return $this;
@@ -160,6 +171,10 @@ class Book implements BookInterface
      */
     public function setDescription(?string $description): Book
     {
+        if ('' === $description) {
+            throw new \InvalidArgumentException();
+        }
+
         $this->description = $description;
 
         return $this;
@@ -182,6 +197,10 @@ class Book implements BookInterface
      */
     public function setCoverUri(?string $coverUri): Book
     {
+        if ('' === $coverUri) {
+            throw new \InvalidArgumentException();
+        }
+
         $this->coverUri = $coverUri;
 
         return $this;
@@ -226,6 +245,14 @@ class Book implements BookInterface
      */
     public function setAuthors(?array $authors): Book
     {
+        if (null === $authors) {
+            $this->authors = null;
+        }
+
+        if (0 === count($authors)) {
+            throw new \InvalidArgumentException();
+        }
+
         foreach ($authors as $author) {
             if (!is_object($author) || !is_subclass_of($author, AuthorInterface::class)) {
                 throw new \InvalidArgumentException();
@@ -254,6 +281,10 @@ class Book implements BookInterface
      */
     public function setPublisher(?string $publisher): Book
     {
+        if ('' === $publisher) {
+            throw new \InvalidArgumentException();
+        }
+
         $this->publisher = $publisher;
 
         return $this;
@@ -320,6 +351,10 @@ class Book implements BookInterface
      */
     public function setPriceCode(?string $priceCode): Book
     {
+        if ('' === $priceCode) {
+            throw new \InvalidArgumentException();
+        }
+
         $this->priceCode = $priceCode;
 
         return $this;
