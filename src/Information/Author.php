@@ -76,6 +76,8 @@ class Author implements AuthorInterface
     {
         if (null === $roles) {
             $this->roles = null;
+
+            return $this;
         }
 
         if (0 === count($roles)) {

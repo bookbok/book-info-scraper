@@ -247,6 +247,8 @@ class Book implements BookInterface
     {
         if (null === $authors) {
             $this->authors = null;
+
+            return $this;
         }
 
         if (0 === count($authors)) {
@@ -321,20 +323,6 @@ class Book implements BookInterface
     }
 
     /**
-     * Set the price.
-     *
-     * @param int|null $price The price
-     *
-     * @return $this
-     */
-    public function setPrice(?int $price): Book
-    {
-        $this->price = $price;
-
-        return $this;
-    }
-
-    /**
      * {@inheritdoc}
      */
     public function getPriceCode(): ?string
@@ -343,19 +331,30 @@ class Book implements BookInterface
     }
 
     /**
-     * Set the price currency code.
+     * Set the price.
      *
-     * @param string|null $priceCode The price currency code
+     * @see https://www.iso.org/iso-4217-currency-codes.html
+     *
+     * @param int|null $price The price
+     * @param string|null $code The price code
      *
      * @return $this
      */
-    public function setPriceCode(?string $priceCode): Book
+    public function setPrice(?int $price, ?string $code): Book
     {
-        if ('' === $priceCode) {
+        if (null === $price) {
+            $this->price = null;
+            $this->priceCode = null;
+
+            return $this;
+        }
+
+        if (null === $code || '' === $code) {
             throw new \InvalidArgumentException();
         }
 
-        $this->priceCode = $priceCode;
+        $this->price = $price;
+        $this->priceCode = $code;
 
         return $this;
     }
