@@ -85,6 +85,8 @@ interface BookInterface
     /**
      * Returns the price currency code.
      *
+     * If getPrice does not return null, getPriceCode must not return null.
+     *
      * @see https://www.iso.org/iso-4217-currency-codes.html
      *
      * @return string|null
