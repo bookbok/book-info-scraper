@@ -295,12 +295,6 @@ class Book implements BookInterface
             throw new \InvalidArgumentException();
         }
 
-        foreach ($authors as $author) {
-            if (!is_object($author) || !is_subclass_of($author, AuthorInterface::class)) {
-                throw new \InvalidArgumentException();
-            }
-        }
-
         $this->authors = $authors;
 
         $this->setSupport(static::S_AUTHORS);

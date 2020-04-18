@@ -20,7 +20,7 @@ trait SupportTrait
      *
      * @param int $support The supported value flags
      *
-     * @return Author
+     * @return void
      */
     protected function setSupport(int $support): void
     {
@@ -36,7 +36,7 @@ trait SupportTrait
      *
      * @param int $support The supported value flags
      *
-     * @return Author
+     * @return void
      */
     protected function removeSupport(int $support): void
     {
