@@ -18,10 +18,13 @@
         }
     },
     "require-dev": {
-        "squizlabs/php_codesniffer": "^3.5"
-    },
+        "squizlabs/php_codesniffer": "^3.5",
+        "phpstan/phpstan": "^0.12.18"
+    }
+    ,
     "scripts": {
         "phpcs":"phpcs --standard=PSR12 src",
-        "phpcbf":"phpcbf --standard=PSR12 src"
+        "phpcbf":"phpcbf --standard=PSR12 src",
+        "phpstan": "phpstan analyse src --level=max"
     }
 }
