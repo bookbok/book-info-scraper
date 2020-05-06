@@ -53,6 +53,32 @@ class ScrapeManager
     }
 
     /**
+     * Returns the event dispatcher.
+     *
+     * @return EventDispatcherInterface|null
+     */
+    protected function getEventDispatcher(): ?EventDispatcherInterface
+    {
+        return $this->eventDispatcher;
+    }
+
+    /**
+     * Returns the scrapers.
+     *
+     * @return ScraperInterface[]
+     */
+    protected function getScrapers(): array
+    {
+        $scrapers = [];
+
+        foreach (clone $this->scrapers as $scraper) {
+            $scrapers[] = $scraper;
+        }
+
+        return $scrapers;
+    }
+
+    /**
      * Returns the book.
      *
      * @param string   $id The book identifier
@@ -68,7 +94,7 @@ class ScrapeManager
         callable $filter = null,
         bool $ignoreException = false
     ): ?BookInterface {
-        foreach ($this->scrapers as $scraper) {
+        foreach ($this->getScrapers() as $scraper) {
             $book = null;
 
             try {
