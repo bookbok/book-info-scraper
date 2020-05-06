@@ -6,6 +6,7 @@ use BookBok\BookInfoScraper\Event\DataProviderExceptionEvent;
 use BookBok\BookInfoScraper\Exception\DataProviderException;
 use BookBok\BookInfoScraper\Information\BookInterface;
 use Psr\EventDispatcher\EventDispatcherInterface;
+use SplPriorityQueue;
 
 /**
  * Management scraper objects.
@@ -21,7 +22,7 @@ class ScrapeManager
     private $eventDispatcher;
 
     /**
-     * @var \SplPriorityQueue|ScraperInterface[]
+     * @var SplPriorityQueue|ScraperInterface[]
      */
     private $scrapers;
 
@@ -33,7 +34,7 @@ class ScrapeManager
     public function __construct(?EventDispatcherInterface $eventDispatcher)
     {
         $this->eventDispatcher = $eventDispatcher;
-        $this->scrapers = new \SplPriorityQueue();
+        $this->scrapers = new SplPriorityQueue();
     }
 
     /**
