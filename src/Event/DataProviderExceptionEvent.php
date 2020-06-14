@@ -9,7 +9,7 @@ use BookBok\BookInfoScraper\ScraperInterface;
  * Event fired when there is a problem when fetching book information.
  *
  * @package BookBok\BookInfoScraper
- * @license https://www.apache.org/licenses/LICENSE-2.0 Apache-2.0
+ * @license MIT
  */
 class DataProviderExceptionEvent implements BookInfoScraperEventInterface
 {

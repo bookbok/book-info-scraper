@@ -6,7 +6,7 @@ namespace BookBok\BookInfoScraper\Information;
  * Book information.
  *
  * @package BookBok\BookInfoScraper
- * @license https://www.apache.org/licenses/LICENSE-2.0 Apache-2.0
+ * @license MIT
  */
 class Book implements BookInterface
 {

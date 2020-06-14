@@ -6,7 +6,7 @@ namespace BookBok\BookInfoScraper\Exception;
  * Exception thrown when there is a problem fetching book information.
  *
  * @package BookBok\BookInfoScraper
- * @license https://www.apache.org/licenses/LICENSE-2.0 Apache-2.0
+ * @license MIT
  *
  * @method \Throwable getPrevious()
  */
