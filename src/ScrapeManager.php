@@ -78,7 +78,15 @@ class ScrapeManager
         return $scrapers;
     }
 
-    public function find(string $id, bool $ignoreException = false, int $supported = null): ?BookInterface
+    /**
+     * Returns the fetched book.
+     *
+     * @param string $id
+     * @param bool $ignoreException
+     *
+     * @return BookInterface|null
+     */
+    public function find(string $id, bool $ignoreException = false): ?BookInterface
     {
         foreach ($this->getScrapers() as $scraper) {
             $book = null;
@@ -111,7 +119,15 @@ class ScrapeManager
         return null;
     }
 
-    public function findAll(string $id, bool $ignoreException = false, int $supported = null): array
+    /**
+     * Returns the fetached books.
+     *
+     * @param string $id
+     * @param bool $ignoreException
+     *
+     * @return BookInterface[]
+     */
+    public function findAll(string $id, bool $ignoreException = false): array
     {
         $books = [];
 
@@ -133,7 +149,13 @@ class ScrapeManager
                     throw $e;
                 }
             } finally {
-                $books[] = null === $book || null === $scraper->getAllowableChecker() || $scraper->getAllowableChecker()($book) ? $book : null;
+                if (
+                    null !== $book
+                    && ($scraper->getAllowableChecker() === null
+                        || $scraper->getAllowableChecker()($book))
+                ) {
+                    $books[] = $book;
+                }
             }
         }
 
