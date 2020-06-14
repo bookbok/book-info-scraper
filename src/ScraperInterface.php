@@ -23,6 +23,16 @@ interface ScraperInterface
     public function support(string $id): bool;
 
     /**
+     * Returns the allowable checker callback.
+     *
+     * The fetched book information is passed to this callback,
+     * and if false is returned, it is treated as it could not be fetched.
+     *
+     * @return callable|null
+     */
+    public function getAllowableChecker(): ?callable;
+
+    /**
      * Returns the book.
      *
      * @param string $id The book identifier
