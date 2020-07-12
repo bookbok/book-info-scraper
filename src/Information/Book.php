@@ -93,10 +93,6 @@ class Book implements BookInterface
      */
     public function setId(string $id): Book
     {
-        if ('' === $id) {
-            throw new \InvalidArgumentException();
-        }
-
         $this->id = $id;
 
         return $this;
@@ -119,10 +115,6 @@ class Book implements BookInterface
      */
     public function setTitle(string $title): Book
     {
-        if ('' === $title) {
-            throw new \InvalidArgumentException();
-        }
-
         $this->title = $title;
 
         return $this;
@@ -145,14 +137,6 @@ class Book implements BookInterface
      */
     public function setSubTitle(?string $subTitle): Book
     {
-        if (null === $subTitle) {
-            return $this;
-        }
-
-        if ('' === $subTitle) {
-            throw new \InvalidArgumentException();
-        }
-
         $this->subTitle = $subTitle;
 
         return $this;
@@ -175,14 +159,6 @@ class Book implements BookInterface
      */
     public function setDescription(?string $description): Book
     {
-        if (null === $description) {
-            return $this;
-        }
-
-        if ('' === $description) {
-            throw new \InvalidArgumentException();
-        }
-
         $this->description = $description;
 
         return $this;
@@ -205,11 +181,7 @@ class Book implements BookInterface
      */
     public function setCoverUri(?string $coverUri): Book
     {
-        if (null === $coverUri) {
-            return $this;
-        }
-
-        if ('' === $coverUri) {
+        if (null !== $coverUri && '' === $coverUri) {
             throw new \InvalidArgumentException();
         }
 
@@ -235,8 +207,8 @@ class Book implements BookInterface
      */
     public function setPageCount(?int $pageCount): Book
     {
-        if (null === $pageCount) {
-            return $this;
+        if (null !== $pageCount && 0 > $pageCount) {
+            throw new \InvalidArgumentException();
         }
 
         $this->pageCount = $pageCount;
@@ -261,14 +233,12 @@ class Book implements BookInterface
      */
     public function setAuthors(?array $authors): Book
     {
-        if (null === $authors) {
-            $this->authors = null;
-
-            return $this;
-        }
-
-        if (0 === count($authors)) {
-            throw new \InvalidArgumentException();
+        if (null !== $authors) {
+            foreach ($authors as $author) {
+                if (!is_object($authors) || $author instanceof AuthorInterface) {
+                    throw new \InvalidArgumentException();
+                }
+            }
         }
 
         $this->authors = $authors;
@@ -293,11 +263,7 @@ class Book implements BookInterface
      */
     public function setPublisher(?string $publisher): Book
     {
-        if (null === $publisher) {
-            return $this;
-        }
-
-        if ('' === $publisher) {
+        if (null !== $publisher && '' === $publisher) {
             throw new \InvalidArgumentException();
         }
 
@@ -323,10 +289,6 @@ class Book implements BookInterface
      */
     public function setPublishedAt(?\DateTime $publishedAt): Book
     {
-        if (null === $publishedAt) {
-            return $this;
-        }
-
         $this->publishedAt = $publishedAt;
 
         return $this;
@@ -360,14 +322,18 @@ class Book implements BookInterface
      */
     public function setPrice(?int $price, ?string $code): Book
     {
-        if (null === $price) {
-            $this->price = null;
-            $this->priceCode = null;
-
-            return $this;
+        if (
+            (null === $price && null !== $code)
+            || (null !== $price && null === $code)
+        ) {
+            throw new \InvalidArgumentException();
         }
 
-        if (null === $code || '' === $code) {
+        if (null !== $price && 0 > $price) {
+            throw new \InvalidArgumentException();
+        }
+
+        if (null !== $code && '' === $code) {
             throw new \InvalidArgumentException();
         }
 
