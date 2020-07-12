@@ -45,7 +45,7 @@ interface BookInterface
      * Returns the description.
      *
      * - MUST NOT return empty string.
-     * - Newline code SHOULD be '\n'.
+     * - Newline code MUST be '\n'.
      *
      * @return string|null
      */
@@ -84,6 +84,7 @@ interface BookInterface
      * Returns the publisher name.
      *
      * - MUST NOT return empty string.
+     * - MUST NOT contain line breaks.
      *
      * @return string|null
      */

@@ -14,6 +14,7 @@ interface AuthorInterface
      * Returns the author name.
      *
      * - MUST NOT return empty string.
+     * - MUST NOT contain line breaks.
      *
      * @return string
      */
@@ -23,7 +24,8 @@ interface AuthorInterface
      * Returns the author roles.
      *
      * - MUST NOT return empty array.
-     * - empty string MUST NOT contain.
+     * - Empty string MUST NOT contain.
+     * - Elements MUST NOT contain line breaks.
      *
      * @return string[]|null
      */
