@@ -25,6 +25,9 @@ class GetNameTest extends TestCase
         $this->expectException(InformationInstanceException::class);
         $this->expectExceptionMessage("Name is not set.");
 
-        (new class extends AbstractAuthor{})->getName();
+        $author = (new class extends AbstractAuthor {
+        });
+
+        $author->getName();
     }
 }

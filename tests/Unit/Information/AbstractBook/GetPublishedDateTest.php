@@ -13,7 +13,7 @@ class GetPublishedDateTest extends TestCase
      */
     public function testReturnsPropertyValue($value)
     {
-        $book = new class($value) extends AbstractBook {
+        $book = new class ($value) extends AbstractBook {
             public function __construct($value)
             {
                 $this->publishedDate = $value;

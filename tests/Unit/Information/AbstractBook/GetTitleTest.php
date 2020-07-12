@@ -25,6 +25,9 @@ class GetTitleTest extends TestCase
         $this->expectException(InformationInstanceException::class);
         $this->expectExceptionMessage("Title is not set.");
 
-        (new class extends AbstractBook{})->getTitle();
+        $book = (new class extends AbstractBook{
+        });
+
+        $book->getTitle();
     }
 }

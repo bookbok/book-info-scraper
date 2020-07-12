@@ -14,7 +14,7 @@ class GetRolesTest extends TestCase
      */
     public function testReturnsPropertyValue($value)
     {
-        $author = new class($value) extends AbstractAuthor {
+        $author = new class ($value) extends AbstractAuthor {
             public function __construct($value)
             {
                 $this->roles = $value;
@@ -24,7 +24,8 @@ class GetRolesTest extends TestCase
         $this->assertSame($value, $author->getRoles());
     }
 
-    public function dataProviderReturnsPropertyValue(): array {
+    public function dataProviderReturnsPropertyValue(): array
+    {
         return [
             [["abc", "def"]],
             [null]

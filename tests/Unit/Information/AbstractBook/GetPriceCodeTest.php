@@ -15,7 +15,7 @@ class GetPriceCodeTest extends TestCase
      */
     public function testReturnsPropertyValue($price, $priceCode)
     {
-        $book = new class($price, $priceCode) extends AbstractBook {
+        $book = new class ($price, $priceCode) extends AbstractBook {
             public function __construct($price, $priceCode)
             {
                 $this->price = $price;

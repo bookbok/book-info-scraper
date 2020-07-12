@@ -25,6 +25,9 @@ class GetIdTest extends TestCase
         $this->expectException(InformationInstanceException::class);
         $this->expectExceptionMessage("Id is not set.");
 
-        (new class extends AbstractBook{})->getId();
+        $book = (new class extends AbstractBook{
+        });
+
+        $book->getId();
     }
 }
