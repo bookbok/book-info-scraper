@@ -1,5 +1,8 @@
 # Book Information scraper
 
+This library provides a unified interface
+to retrieve book information from each source.
+
 ## Install
 
 ```bash
@@ -8,6 +11,5 @@ $ composer require bookbok/book-info-scraper
 
 ## License
 
-Apache License 2.0 applies to this library.
-
-For more details, read LICENSE file.
+The MIT license applies to this library.
+The full license is described in the LICENSE file.
