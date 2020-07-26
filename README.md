@@ -13,3 +13,8 @@ $ composer require bookbok/book-info-scraper
 
 The MIT license applies to this library.
 The full license is described in the LICENSE file.
+
+## Uses
+
+Implement `ScraperInterface`, `BookInterface`, and `AuthorInterface` for each information source,
+and get the information of a book from the implemented Scraper.
