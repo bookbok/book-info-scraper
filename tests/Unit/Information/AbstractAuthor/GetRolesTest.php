@@ -2,7 +2,6 @@
 
 namespace Tests\Unit\Information\AbstractAuthor;
 
-use BookBok\BookInfoScraper\Exception\InformationInstanceException;
 use BookBok\BookInfoScraper\Information\AbstractAuthor;
 use PHPUnit\Framework\TestCase;
 
@@ -11,11 +10,13 @@ class GetRolesTest extends TestCase
     /**
      * @dataProvider dataProviderReturnsPropertyValue
      * @param string[]|null $value
+     * @return void
      */
-    public function testReturnsPropertyValue($value)
+    public function testReturnsPropertyValue(?array $value): void
     {
         $author = new class ($value) extends AbstractAuthor {
-            public function __construct($value)
+            // @phpstan-ignore-next-line phpstan cant analyze anonymous class phpdoc
+            public function __construct(?array $value)
             {
                 $this->roles = $value;
             }
@@ -24,6 +25,9 @@ class GetRolesTest extends TestCase
         $this->assertSame($value, $author->getRoles());
     }
 
+    /**
+     * @return array<array{string[]|null}>
+     */
     public function dataProviderReturnsPropertyValue(): array
     {
         return [

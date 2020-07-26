@@ -12,8 +12,9 @@ class WithAuthorsTest extends TestCase
     /**
      * @dataProvider dataProviderPossibleToSetValidValueAndReturnCloneInstance
      * @param ImmutableAuthor[]|null $value
+     * @return void
      */
-    public function testPossibleToSetValidValueAndReturnCloneInstance($value)
+    public function testPossibleToSetValidValueAndReturnCloneInstance(?array $value): void
     {
         $author = $this->createStub(ImmutableAuthor::class);
 
@@ -25,6 +26,9 @@ class WithAuthorsTest extends TestCase
         $this->assertNotSame($cloneBook, $book);
     }
 
+    /**
+     * @return array<array{ImmutableAuthor[]|null}>
+     */
     public function dataProviderPossibleToSetValidValueAndReturnCloneInstance(): array
     {
         return [
@@ -35,10 +39,11 @@ class WithAuthorsTest extends TestCase
 
     /**
      * @dataProvider dataProviderThrowExceptionWhenSetInvalidValue
-     * @param mixed $value
+     * @param mixed[] $value
      * @param string $message
+     * @return void
      */
-    public function testThrowExceptionWhenSetInvalidValue($value, $message)
+    public function testThrowExceptionWhenSetInvalidValue(array $value, string $message): void
     {
         $this->expectException(\InvalidArgumentException::class);
         $this->expectExceptionMessage($message);
@@ -46,6 +51,9 @@ class WithAuthorsTest extends TestCase
         (new ImmutableBook())->withAuthors($value);
     }
 
+    /**
+     * @return array<array{mixed[],string}>
+     */
     public function dataProviderThrowExceptionWhenSetInvalidValue(): array
     {
         return [

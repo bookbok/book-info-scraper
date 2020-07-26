@@ -10,8 +10,9 @@ class WithCoverUriTest extends TestCase
     /**
      * @dataProvider dataProviderPossibleToSetValidValueAndReturnCloneInstance
      * @param string|null $value
+     * @return void
      */
-    public function testPossibleToSetValidValueAndReturnCloneInstance($value)
+    public function testPossibleToSetValidValueAndReturnCloneInstance(?string $value): void
     {
         $book = (new ImmutableBook())->withCoverUri("https://example.com/abc");
         $cloneBook = $book->withCoverUri($value);
@@ -21,6 +22,9 @@ class WithCoverUriTest extends TestCase
         $this->assertNotSame($cloneBook, $book);
     }
 
+    /**
+     * @return array<array{string|null}>
+     */
     public function dataProviderPossibleToSetValidValueAndReturnCloneInstance(): array
     {
         return [
@@ -32,10 +36,11 @@ class WithCoverUriTest extends TestCase
 
     /**
      * @dataProvider dataProviderThrowExceptionWhenSetInvalidValue
-     * @param mixed $value
+     * @param string $value
      * @param string $message
+     * @return void
      */
-    public function testThrowExceptionWhenSetInvalidValue($value, $message)
+    public function testThrowExceptionWhenSetInvalidValue(string $value, string $message): void
     {
         $this->expectException(\InvalidArgumentException::class);
         $this->expectExceptionMessage($message);
@@ -43,6 +48,9 @@ class WithCoverUriTest extends TestCase
         (new ImmutableBook())->withCoverUri($value);
     }
 
+    /**
+     * @return array<array{string,string}>
+     */
     public function dataProviderThrowExceptionWhenSetInvalidValue(): array
     {
         return [

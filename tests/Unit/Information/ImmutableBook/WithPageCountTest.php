@@ -10,8 +10,9 @@ class WithPageCountTest extends TestCase
     /**
      * @dataProvider dataProviderPossibleToSetValidValueAndReturnCloneInstance
      * @param int|null $value
+     * @return void
      */
-    public function testPossibleToSetValidValueAndReturnCloneInstance($value)
+    public function testPossibleToSetValidValueAndReturnCloneInstance(?int $value): void
     {
         $book = (new ImmutableBook())->withPageCount(123);
         $cloneBook = $book->withPageCount($value);
@@ -21,6 +22,9 @@ class WithPageCountTest extends TestCase
         $this->assertNotSame($cloneBook, $book);
     }
 
+    /**
+     * @return array<array{int|null}>
+     */
     public function dataProviderPossibleToSetValidValueAndReturnCloneInstance(): array
     {
         return [
@@ -31,10 +35,11 @@ class WithPageCountTest extends TestCase
 
     /**
      * @dataProvider dataProviderThrowExceptionWhenSetInvalidValue
-     * @param mixed $value
+     * @param int $value
      * @param string $message
+     * @return void
      */
-    public function testThrowExceptionWhenSetInvalidValue($value, $message)
+    public function testThrowExceptionWhenSetInvalidValue(int $value, string $message): void
     {
         $this->expectException(\InvalidArgumentException::class);
         $this->expectExceptionMessage($message);
@@ -42,6 +47,9 @@ class WithPageCountTest extends TestCase
         (new ImmutableBook())->withPageCount($value);
     }
 
+    /**
+     * @return array<array{int,string}>
+     */
     public function dataProviderThrowExceptionWhenSetInvalidValue(): array
     {
         return [

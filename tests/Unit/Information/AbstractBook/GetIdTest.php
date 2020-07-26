@@ -8,7 +8,10 @@ use PHPUnit\Framework\TestCase;
 
 class GetIdTest extends TestCase
 {
-    public function testReturnsPropertyValue()
+    /**
+     * @return void
+     */
+    public function testReturnsPropertyValue(): void
     {
         $book = new class extends AbstractBook {
             public function __construct()
@@ -20,7 +23,10 @@ class GetIdTest extends TestCase
         $this->assertSame("abc", $book->getId());
     }
 
-    public function testThrowExceptionPropertyValueIsNull()
+    /**
+     * @return void
+     */
+    public function testThrowExceptionPropertyValueIsNull(): void
     {
         $this->expectException(InformationInstanceException::class);
         $this->expectExceptionMessage("Id is not set.");

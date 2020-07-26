@@ -10,12 +10,14 @@ class GetAuthorsTest extends TestCase
 {
     /**
      * @dataProvider dataProviderReturnsPropertyValue
-     * @param string|null $value
+     * @param AbstractAuthor[]|null $value
+     * @return void
      */
-    public function testReturnsPropertyValue($value)
+    public function testReturnsPropertyValue(?array $value): void
     {
         $book = new class ($value) extends AbstractBook {
-            public function __construct($value)
+            // @phpstan-ignore-next-line phpstan cant analyze anonymous class phpdoc
+            public function __construct(?array $value)
             {
                 $this->authors = $value;
             }
@@ -24,6 +26,9 @@ class GetAuthorsTest extends TestCase
         $this->assertSame($value, $book->getAuthors());
     }
 
+    /**
+     * @return array<array{AbstractAuthor[]|null}>
+     */
     public function dataProviderReturnsPropertyValue(): array
     {
         return [

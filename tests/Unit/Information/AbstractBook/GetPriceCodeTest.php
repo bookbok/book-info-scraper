@@ -12,11 +12,12 @@ class GetPriceCodeTest extends TestCase
      * @dataProvider dataProviderReturnsPropertyValue
      * @param float|null $price
      * @param string|null $priceCode
+     * @return void
      */
-    public function testReturnsPropertyValue($price, $priceCode)
+    public function testReturnsPropertyValue(?float $price, ?string $priceCode): void
     {
         $book = new class ($price, $priceCode) extends AbstractBook {
-            public function __construct($price, $priceCode)
+            public function __construct(?float $price, ?string $priceCode)
             {
                 $this->price = $price;
                 $this->priceCode = $priceCode;
@@ -26,6 +27,9 @@ class GetPriceCodeTest extends TestCase
         $this->assertSame($priceCode, $book->getPriceCode());
     }
 
+    /**
+     * @return array<array{float|null,string|null}>
+     */
     public function dataProviderReturnsPropertyValue(): array
     {
         return [
@@ -35,7 +39,10 @@ class GetPriceCodeTest extends TestCase
         ];
     }
 
-    public function testThrowExceptionPropertyValueIsInvalid()
+    /**
+     * @return void
+     */
+    public function testThrowExceptionPropertyValueIsInvalid(): void
     {
         $this->expectException(InformationInstanceException::class);
         $this->expectExceptionMessage("Price is set but price code is not set.");

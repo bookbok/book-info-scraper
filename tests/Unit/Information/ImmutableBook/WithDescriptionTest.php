@@ -10,8 +10,9 @@ class WithDescriptionTest extends TestCase
     /**
      * @dataProvider dataProviderPossibleToSetValidValueAndReturnCloneInstance
      * @param string|null $value
+     * @return void
      */
-    public function testPossibleToSetValidValueAndReturnCloneInstance($value)
+    public function testPossibleToSetValidValueAndReturnCloneInstance(?string $value): void
     {
         $book = (new ImmutableBook())->withDescription("abc");
         $cloneBook = $book->withDescription($value);
@@ -21,6 +22,9 @@ class WithDescriptionTest extends TestCase
         $this->assertNotSame($cloneBook, $book);
     }
 
+    /**
+     * @return array<array{string|null}>
+     */
     public function dataProviderPossibleToSetValidValueAndReturnCloneInstance(): array
     {
         return [
@@ -31,10 +35,11 @@ class WithDescriptionTest extends TestCase
 
     /**
      * @dataProvider dataProviderThrowExceptionWhenSetInvalidValue
-     * @param mixed $value
+     * @param string $value
      * @param string $message
+     * @return void
      */
-    public function testThrowExceptionWhenSetInvalidValue($value, $message)
+    public function testThrowExceptionWhenSetInvalidValue(string $value, string $message): void
     {
         $this->expectException(\InvalidArgumentException::class);
         $this->expectExceptionMessage($message);
@@ -42,6 +47,9 @@ class WithDescriptionTest extends TestCase
         (new ImmutableBook())->withDescription($value);
     }
 
+    /**
+     * @return array<array{string,string}>
+     */
     public function dataProviderThrowExceptionWhenSetInvalidValue(): array
     {
         return [
@@ -49,7 +57,10 @@ class WithDescriptionTest extends TestCase
         ];
     }
 
-    public function testConvertLineBreakCRLFAndCR2LF()
+    /**
+     * @return void
+     */
+    public function testConvertLineBreakCRLFAndCR2LF(): void
     {
         $book = (new ImmutableBook())->withDescription("\r\rabc\rdef\r\nghi\r\r\n\njkl\n");
 

@@ -22,7 +22,7 @@ class ScrapeManager
     private $eventDispatcher;
 
     /**
-     * @var SplPriorityQueue|ScraperInterface[]
+     * @var SplPriorityQueue<int,ScraperInterface>
      */
     private $scrapers;
 
@@ -75,6 +75,7 @@ class ScrapeManager
             $scrapers[] = $scraper;
         }
 
+        /** @var ScraperInterface[] */
         return $scrapers;
     }
 

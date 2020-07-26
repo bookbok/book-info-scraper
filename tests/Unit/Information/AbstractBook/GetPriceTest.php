@@ -9,12 +9,13 @@ class GetPriceTest extends TestCase
 {
     /**
      * @dataProvider dataProviderReturnsPropertyValue
-     * @param string|null $value
+     * @param float|null $value
+     * @return void
      */
-    public function testReturnsPropertyValue($value)
+    public function testReturnsPropertyValue(?float $value): void
     {
         $book = new class ($value) extends AbstractBook {
-            public function __construct($value)
+            public function __construct(?float $value)
             {
                 $this->price = $value;
             }
@@ -23,6 +24,9 @@ class GetPriceTest extends TestCase
         $this->assertSame($value, $book->getPrice());
     }
 
+    /**
+     * @return array<array{float|null}>
+     */
     public function dataProviderReturnsPropertyValue(): array
     {
         return [

@@ -11,8 +11,9 @@ class WithPriceTest extends TestCase
      * @dataProvider dataProviderPossibleToSetValidValueAndReturnCloneInstance
      * @param float|null $price
      * @param string|null $priceCode
+     * @return void
      */
-    public function testPossibleToSetValidValueAndReturnCloneInstance($price, $priceCode)
+    public function testPossibleToSetValidValueAndReturnCloneInstance(?float $price, ?string $priceCode): void
     {
         $book = (new ImmutableBook())->withPrice(123.45, "USD");
         $cloneBook = $book->withPrice($price, $priceCode);
@@ -24,6 +25,9 @@ class WithPriceTest extends TestCase
         $this->assertNotSame($cloneBook, $book);
     }
 
+    /**
+     * @return array<array{float|null,string|null}>
+     */
     public function dataProviderPossibleToSetValidValueAndReturnCloneInstance(): array
     {
         return [
@@ -35,11 +39,12 @@ class WithPriceTest extends TestCase
 
     /**
      * @dataProvider dataProviderThrowExceptionWhenSetInvalidValue
-     * @param float|null $price
+     * @param float $price
      * @param string|null $priceCode
      * @param string $message
+     * @return void
      */
-    public function testThrowExceptionWhenSetInvalidValue($price, $priceCode, $message)
+    public function testThrowExceptionWhenSetInvalidValue(float $price, ?string $priceCode, string $message): void
     {
         $this->expectException(\InvalidArgumentException::class);
         $this->expectExceptionMessage($message);
@@ -47,6 +52,9 @@ class WithPriceTest extends TestCase
         (new ImmutableBook())->withPrice($price, $priceCode);
     }
 
+    /**
+     * @return array<array{float,string|null,string}>
+     */
     public function dataProviderThrowExceptionWhenSetInvalidValue(): array
     {
         return [

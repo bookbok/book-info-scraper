@@ -178,6 +178,7 @@ class ImmutableBook extends AbstractBook
             }
 
             foreach ($authors as $author) {
+                // @phpstan-ignore-next-line phpdoc has already constrained that $author is an ImmutableAuthor.
                 if (!(is_object($author) && $author instanceof ImmutableAuthor)) {
                     throw new \InvalidArgumentException(
                         "Cannot set the value other than the object that inherits ImmutableAuthor."

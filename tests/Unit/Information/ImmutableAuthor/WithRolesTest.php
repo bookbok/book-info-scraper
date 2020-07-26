@@ -10,8 +10,9 @@ class WithRolesTest extends TestCase
     /**
      * @dataProvider dataProviderPossibleToSetValidValueAndReturnCloneInstance
      * @param string[]|null $value
+     * @return void
      */
-    public function testPossibleToSetValidValueAndReturnCloneInstance($value)
+    public function testPossibleToSetValidValueAndReturnCloneInstance(?array $value): void
     {
         $author = (new ImmutableAuthor())->withRoles(["role99"]);
         $cloneAuthor = $author->withRoles($value);
@@ -21,6 +22,9 @@ class WithRolesTest extends TestCase
         $this->assertNotSame($cloneAuthor, $author);
     }
 
+    /**
+     * @return array<array{string[]|null}>
+     */
     public function dataProviderPossibleToSetValidValueAndReturnCloneInstance(): array
     {
         return [
@@ -33,8 +37,9 @@ class WithRolesTest extends TestCase
      * @dataProvider dataProviderThrowExceptionWhenSetInvalidValue
      * @param mixed $value
      * @param string $message
+     * @return void
      */
-    public function testThrowExceptionWhenSetInvalidValue($value, $message)
+    public function testThrowExceptionWhenSetInvalidValue($value, string $message): void
     {
         $this->expectException(\InvalidArgumentException::class);
         $this->expectExceptionMessage($message);
@@ -42,6 +47,9 @@ class WithRolesTest extends TestCase
         (new ImmutableAuthor())->withRoles($value);
     }
 
+    /**
+     * @return array<array{string[],string}>
+     */
     public function dataProviderThrowExceptionWhenSetInvalidValue(): array
     {
         return [

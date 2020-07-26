@@ -8,7 +8,10 @@ use PHPUnit\Framework\TestCase;
 
 class GetTitleTest extends TestCase
 {
-    public function testReturnsPropertyValue()
+    /**
+     * @return void
+     */
+    public function testReturnsPropertyValue(): void
     {
         $book = new class extends AbstractBook {
             public function __construct()
@@ -20,7 +23,10 @@ class GetTitleTest extends TestCase
         $this->assertSame("abc", $book->getTitle());
     }
 
-    public function testThrowExceptionPropertyValueIsNull()
+    /**
+     * @return void
+     */
+    public function testThrowExceptionPropertyValueIsNull(): void
     {
         $this->expectException(InformationInstanceException::class);
         $this->expectExceptionMessage("Title is not set.");
