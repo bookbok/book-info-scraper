@@ -75,7 +75,7 @@ class ScrapeManager
             $scrapers[] = $scraper;
         }
 
-        /** @var ScraperInterface[] */
+        // @phpstan-ignore-next-line
         return $scrapers;
     }
 
