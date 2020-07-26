@@ -31,7 +31,7 @@
     "scripts": {
         "phpcs":"phpcs",
         "phpcbf":"phpcbf",
-        "phpstan": "phpstan analyse src --level=max",
+        "phpstan": "phpstan analyse",
         "phpunit": "phpunit"
     }
 }
