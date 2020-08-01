@@ -22,14 +22,15 @@ class ScrapeManager
     private $eventDispatcher;
 
     /**
-     * @var SplPriorityQueue<int,ScraperInterface>
+     * @var SplPriorityQueue
+     * @phpstan-var SplPriorityQueue<int,ScraperInterface>
      */
     private $scrapers;
 
     /**
      * Constructor.
      *
-     * @param EventDispatcherInterface $eventDispatcher The event dispatcher
+     * @param EventDispatcherInterface|null $eventDispatcher The event dispatcher
      */
     public function __construct(?EventDispatcherInterface $eventDispatcher)
     {
@@ -41,7 +42,7 @@ class ScrapeManager
      * Add the book information scraper.
      *
      * @param ScraperInterface $scraper The book information scraper
-     * @param int              $priority The priority
+     * @param int $priority The priority
      *
      * @return $this
      */

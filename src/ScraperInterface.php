@@ -28,7 +28,8 @@ interface ScraperInterface
      * The fetched book information is passed to this callback,
      * and if false is returned, it is treated as it could not be fetched.
      *
-     * @return (callable(BookInterface):bool)|null
+     * @return callable|null
+     * @phpstan-return (callable(BookInterface):bool)|null
      */
     public function getAllowableChecker(): ?callable;
 
