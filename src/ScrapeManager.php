@@ -122,7 +122,7 @@ class ScrapeManager
     }
 
     /**
-     * Returns the fetached books.
+     * Returns the fetched books.
      *
      * @param string $id
      * @param bool $ignoreException
