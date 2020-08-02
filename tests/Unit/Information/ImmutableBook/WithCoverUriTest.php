@@ -55,7 +55,10 @@ class WithCoverUriTest extends TestCase
     {
         return [
             "Empty string" => ["", "Cannot set empty string."],
-            "Not start with https?://" => ["abc", "It is not possible to set string that does not start with https?://"],
+            "Not start with https?://" => [
+                "abc",
+                "It is not possible to set string that does not start with https?://"
+            ],
         ];
     }
 }

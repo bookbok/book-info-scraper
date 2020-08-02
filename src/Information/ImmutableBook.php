@@ -117,7 +117,9 @@ class ImmutableBook extends AbstractBook
             }
 
             if (preg_match("/\Ahttps?:\/\//u", $coverUri) !== 1) {
-                throw new \InvalidArgumentException("It is not possible to set string that does not start with https?://");
+                throw new \InvalidArgumentException(
+                    "It is not possible to set string that does not start with https?://"
+                );
             }
         }
 
