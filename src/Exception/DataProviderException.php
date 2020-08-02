@@ -1,22 +1,26 @@
 <?php
 
-/**
- * bookbok/book-info-scraper
- *
- * Licensed under The MIT License
- * For full copyright and license information, please see the LICENSE.
- * Redistributions of files must retain the above copyright notice.
- *
- * @copyright (c) BookBok
- * @license MIT
- * @since 1.0.0
- */
-
 namespace BookBok\BookInfoScraper\Exception;
 
 /**
+ * Exception thrown when there is a problem fetching book information.
  *
+ * @package BookBok\BookInfoScraper
+ * @license MIT
+ *
+ * @method \Throwable getPrevious()
  */
-class DataProviderException extends \RuntimeException
+class DataProviderException extends \RuntimeException implements BookInfoScraperExceptionInterface
 {
+    /**
+     * Constructor.
+     *
+     * @param string $message
+     * @param int $code
+     * @param \Throwable $previous
+     */
+    public function __construct(string $message, int $code, \Throwable $previous)
+    {
+        parent::__construct($message, $code, $previous);
+    }
 }

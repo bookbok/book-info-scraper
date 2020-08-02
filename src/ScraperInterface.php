@@ -1,24 +1,15 @@
 <?php
 
-/**
- * bookbok/book-info-scraper
- *
- * Licensed under The MIT License
- * For full copyright and license information, please see the LICENSE.
- * Redistributions of files must retain the above copyright notice.
- *
- * @copyright (c) BookBok
- * @license MIT
- * @since 1.0.0
- */
-
 namespace BookBok\BookInfoScraper;
 
 use BookBok\BookInfoScraper\Exception\DataProviderException;
 use BookBok\BookInfoScraper\Information\BookInterface;
 
 /**
+ * Interfaces that scraper must implement.
  *
+ * @package BookBok\BookInfoScraper
+ * @license MIT
  */
 interface ScraperInterface
 {
@@ -30,6 +21,17 @@ interface ScraperInterface
      * @return bool
      */
     public function support(string $id): bool;
+
+    /**
+     * Returns the allowable checker callback.
+     *
+     * The fetched book information is passed to this callback,
+     * and if false is returned, it is treated as it could not be fetched.
+     *
+     * @return callable|null
+     * @phpstan-return (callable(BookInterface):bool)|null
+     */
+    public function getAllowableChecker(): ?callable;
 
     /**
      * Returns the book.

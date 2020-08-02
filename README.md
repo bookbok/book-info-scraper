@@ -1,47 +1,20 @@
 # Book Information scraper
 
+This library provides a unified interface
+to retrieve book information from each source.
+
 ## Install
 
 ```bash
 $ composer require bookbok/book-info-scraper
 ```
 
+## License
+
+The MIT license applies to this library.
+The full license is described in the LICENSE file.
+
 ## Uses
 
-```php
-use BookBok\BookScraper\ScrapeManager;
-use BookBok\BookScraper\ScraperInterface;
-use BookBok\BookScraper\BookInterface;
-use BookBok\BookScraper\Book;
-
-class ISBNScraper implements ScraperInterface
-{
-    /**
-     * {@inheritdoc}
-     */
-    public function support(string $id): bool
-    {
-        return 1 === preg_match("ISBN REGEX", $id);
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function scrape(string $id): BookInterface
-    {
-        $content = file_get_contents("https://example.com/book?isbn={$id}");
-        $data = json_decode($content);
-
-        $book = new Book($id, $data["title"]);
-
-        $book->setDescription($data["description"]);
-
-        return $book;
-    }
-}
-
-$manager = new ScrapeManager();
-$manager->add(new ISBNScraper());
-
-$book = $manager->scrape("9784000000000");
-```
+Implement `ScraperInterface`, `BookInterface`, and `AuthorInterface` for each information source,
+and get the information of a book from the implemented Scraper.

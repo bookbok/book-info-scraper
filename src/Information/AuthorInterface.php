@@ -1,26 +1,20 @@
 <?php
 
-/**
- * bookbok/book-info-scraper
- *
- * Licensed under The MIT License
- * For full copyright and license information, please see the LICENSE.
- * Redistributions of files must retain the above copyright notice.
- *
- * @copyright (c) BookBok
- * @license MIT
- * @since 1.0.0
- */
-
 namespace BookBok\BookInfoScraper\Information;
 
 /**
+ * Author information interface.
  *
+ * @package BookBok\BookInfoScraper
+ * @license MIT
  */
 interface AuthorInterface
 {
     /**
      * Returns the author name.
+     *
+     * - MUST NOT return empty string.
+     * - MUST NOT contain line breaks.
      *
      * @return string
      */
@@ -29,7 +23,11 @@ interface AuthorInterface
     /**
      * Returns the author roles.
      *
-     * @return string[]
+     * - MUST NOT return empty array.
+     * - Empty string MUST NOT contain.
+     * - Elements MUST NOT contain line breaks.
+     *
+     * @return string[]|null
      */
-    public function getRoles(): array;
+    public function getRoles(): ?array;
 }
