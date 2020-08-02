@@ -60,7 +60,11 @@ class WithPriceTest extends TestCase
         return [
             "Minus price" => [-1.1, "JPY", "Cannot set a number smaller than 0."],
             "Lowercase" => [123.45, "usd", "Cannot set string that does not match the ISO 4217 Currency Codes format."],
-            "Contain lowercase" => [123.45, "UsD", "Cannot set string that does not match the ISO 4217 Currency Codes format."],
+            "Contain lowercase" => [
+                123.45,
+                "UsD",
+                "Cannot set string that does not match the ISO 4217 Currency Codes format."
+            ],
             "Without current code" => [456.78, null, "Cannot set price without currency code."],
         ];
     }
