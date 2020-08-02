@@ -34,11 +34,11 @@ jobs:
       - name: Install dependencies
         run: composer install
 
-      - name: "Run phpunit"
-        run: composer phpunit
+      - name: "Run php_codesniffer"
+        run: composer phpcs
 
       - name: "Run phpstan"
         run: composer phpstan
 
-      - name: "Run php_codesniffer"
-        run: composer phpcs
+      - name: "Run phpunit"
+        run: composer phpunit
